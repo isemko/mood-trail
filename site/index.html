@@ -7,29 +7,60 @@
 
 		<title>Mood Trail</title>
 
-
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 
 	</head>
 
 	<body>
-		<div>
-			<header>
-				
-			</header>
-			<nav>
+		<script type="text/x-handlebars" data-template-name='application'>
 		
-			</nav>
-<
-		
+			   <div class='navbar navbar-default'>
+      <div class='container'>
+       <ul class='nav navbar-nav navbar-right'>
+       {{#link-to 'index' class='navbar-brand' tagname='li'}}Home Page{{/link-to}}
+		{{#link-to 'create' class='navbar-brand' tagname='li'}}Create a Mood{{/link-to}}
+					
+        </ul>
+      </div>
+    </div>
+    <div class="navbar"></div>
+			<div class="container">{{outlet}}</div>
+			<div class="container"></div>
+		</script>
+			
 
-			<footer>
-		
-			</footer>
-		</div>
+			
+				<script type="text/x-handlebars" data-template-name="index">
+					<section class="content">
+					<h1>Moods</h1>
+					{{moodCount}}
+
+					<br/>
+					<h2>These are the current moods:</h2>
+					{{#each}}
+					{{#link-to  'mood' this class='btn btn-success'}}
+					 {{title}}
+					 {{/link-to}}
+					{{/each}}
+					</section>
+				</script>
+			<script type="text/x-handlebars" data-template-name="create">
+					<section class="content">
+					<h1>Create</h1>
+				
+					</section>
+				</script>
+			<script type="text/x-handlebars" data-template-name="moods/index">
+					<section class="content">
+					<h1>Mood</h1>
+				{{title}}
+					</section>
+				</script>
+	
 		<script src="assets/js/vendor/jquery-1.11.0.min.js"></script>
 		<script src="assets/js/vendor/handlebars-1.1.2.js"></script>
-		<script src="assets/js/vendor/ember.min.js"></script>
-		<script src="assets/js/app.js"></script>	
-		</body>
+		<script src="assets/js/vendor/ember.js"></script>
+		<script src="assets/js/vendor/ember-data.js"></script>
+		<script src="assets/js/app.js"></script>
+	</body>
 </html>
