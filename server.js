@@ -112,8 +112,7 @@ function(request, response) {
 		});
 	});
 });
-//Models
-var moodModel = mongoose.model('mood', mood);
+
 //Start server
 var port = 5000;
 app.listen(process.env.PORT || 5000, function() {
