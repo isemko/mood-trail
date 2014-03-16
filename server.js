@@ -46,10 +46,7 @@ app.get('/api/moods', function(request, response) {
 	return moodModel.find(function(err, moods) {
 		if (!err) {
 			//format JSON with root element
-			var Mood;
-			Mood = {};
-
-			Mood = {
+			var Mood = {
 				mood : moods
 			};
 			return response.send(Mood);
