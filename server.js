@@ -98,8 +98,7 @@ app.put('/api/moods/:id', function(request, response) {
 		});
 	});
 });
-app.
-delete ('/api/moods/:id',
+app.delete ('/api/moods/:id',
 function(request, response) {
 	console.log('removing mood with id: ' + request.params.id);
 	return moodModel.findById(request.params.id, function(err, mood) {
