@@ -59,7 +59,7 @@ app.get('/api/moods', function(request, response) {
 });
 app.post('/api/moods', function(request, response) {
 	var mood = new moodModel({
-		title : request.body.title
+		title : request.body.mood.title
 
 	});
 	mood.save(function(err) {
@@ -69,7 +69,8 @@ app.post('/api/moods', function(request, response) {
 			return console.log(err);
 		}
 	});
-	return response.send(mood);
+	//var Mood = {}
+	return response.send({mood: mood});
 });
 app.get('/api/moods/:id', function(request, response) {
 	return moodModel.findById(request.params.id, function(err, mood) {

@@ -47,7 +47,8 @@
 			<script type="text/x-handlebars" data-template-name="create">
 					<section class="content">
 					<h1>Create</h1>
-				
+					{{input valueBinding='title'}}
+				<button {{action 'createMood'}} class='btn-primary'>Create Test</button>
 					</section>
 				</script>
 			<script type="text/x-handlebars" data-template-name="mood">

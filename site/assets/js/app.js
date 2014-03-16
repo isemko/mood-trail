@@ -14,8 +14,6 @@ DS.RESTAdapter.reopen({
 
 App.Store = DS.Store.extend({
 	revision : 13
-	//adapter : App.ApplicationAdapter.create()
-
 });
 
 App.ApplicationRoute = Ember.Route.extend({
@@ -26,7 +24,7 @@ App.ApplicationRoute = Ember.Route.extend({
 	}
 });
 App.Router.map(function() {
-
+	this.route('index', {path: '/'});
 	this.resource('moods', function() {
 		this.resource('mood', {
 			path : '/:id'
@@ -53,10 +51,21 @@ App.MoodRoute = Ember.Route.extend({
 });
 
 App.CreateRoute = Ember.Route.extend({
-
+	model : function() {
+		return this.get('store').findAll("mood")
+	}
+	
 });
 App.IndexController = Ember.ArrayController.extend({
 	moodCount : Ember.computed.alias('length')
 
 });
-
+App.CreateController = Ember.ObjectController.extend({
+		title : '',
+		actions:{
+			createMood: function(){
+					var md = this.store.createRecord('mood',{ title :this.get('title')});
+					md.save();
+			}
+		}
+});
