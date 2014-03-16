@@ -40,21 +40,7 @@ var mood = new mongoose.Schema({
 	title : String
 
 });
-/*
- this.get({
- '/': function() {
- return this.app.Contact.find({}, (function(_this) {
- return function(err, docs) {
- var Contacts;
- Contacts = {};
- _this.Contacts = {
- Contacts: docs
- };
- return _this.send(_this.Contacts);
- };
- })(this));
- }
- });*/
+
 var moodModel = mongoose.model('mood', mood);
 app.get('/api/moods', function(request, response) {
 	return moodModel.find(function(err, moods) {
@@ -115,7 +101,7 @@ app.put('/api/moods/:id', function(request, response) {
 app.
 delete ('/api/moods/:id',
 function(request, response) {
-	console.log('Deleting appointmnet with id: ' + request.params.id);
+	console.log('removing mood with id: ' + request.params.id);
 	return moodModel.findById(request.params.id, function(err, mood) {
 		return mood.remove(function(err) {
 			if (!err) {
