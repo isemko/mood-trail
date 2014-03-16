@@ -39,8 +39,10 @@
 					<h2>These are the current moods:</h2>
 					{{#each}}
 					{{#link-to  'mood' this class='btn btn-success'}}
-					 {{title}}
+					 {{title}}<br/>
+					 
 					 {{/link-to}}
+					 
 					{{/each}}
 					</section>
 				</script>
@@ -55,6 +57,7 @@
 					<section class="content">
 					<h1>Mood</h1>
 				{{title}}
+				<button {{action 'removeMood'}} class='btn-primary'>remove</button>
 					</section>
 				</script>
 	

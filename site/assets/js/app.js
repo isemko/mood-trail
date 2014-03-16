@@ -6,10 +6,10 @@ App.Mood = DS.Model.extend({
 	title : DS.attr('string')
 });
 App.ApplicationSerializer = DS.RESTSerializer.extend({
-  primaryKey: '_id'
+	primaryKey : '_id'
 });
 DS.RESTAdapter.reopen({
-  namespace: 'api'
+	namespace : 'api'
 });
 
 App.Store = DS.Store.extend({
@@ -18,13 +18,15 @@ App.Store = DS.Store.extend({
 
 App.ApplicationRoute = Ember.Route.extend({
 	setupController : function(controller, model) {
-		
+
 		this._super(controller, model);
 		this.get('store').findAll('mood');
 	}
 });
 App.Router.map(function() {
-	this.route('index', {path: '/'});
+	this.route('index', {
+		path : '/'
+	});
 	this.resource('moods', function() {
 		this.resource('mood', {
 			path : '/:id'
@@ -49,23 +51,36 @@ App.MoodRoute = Ember.Route.extend({
 		return App.Mood.find();
 	}
 });
+App.MoodController = Ember.ObjectController.extend({
+	actions : {
+		removeMood : function() {
 
+			var md = this.get('model');
+			md.deleteRecord();
+			md.save();
+			this.transitionToRoute('index');
+		}
+	}
+
+});
 App.CreateRoute = Ember.Route.extend({
 	model : function() {
-		return this.get('store').findAll("mood")
+		return this.get('store').findAll("mood");
 	}
-	
 });
 App.IndexController = Ember.ArrayController.extend({
 	moodCount : Ember.computed.alias('length')
 
 });
 App.CreateController = Ember.ObjectController.extend({
-		title : '',
-		actions:{
-			createMood: function(){
-					var md = this.store.createRecord('mood',{ title :this.get('title')});
-					md.save();
-			}
+	title : '',
+	actions : {
+		createMood : function() {
+			var md = this.store.createRecord('mood', {
+				title : this.get('title')
+			});
+			md.save();
+			this.transitionToRoute('index')
 		}
+	}
 });
